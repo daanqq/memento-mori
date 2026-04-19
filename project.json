@@ -28,10 +28,6 @@
 						"value" : "soft-gray"
 					},
 					{
-						"label" : "Accent red",
-						"value" : "accent-red"
-					},
-					{
 						"label" : "Custom",
 						"value" : "custom"
 					}
@@ -43,6 +39,7 @@
 			},
 			"customcolor" : 
 			{
+				"condition" : "colorpreset.value == 'custom'",
 				"index" : 11,
 				"order" : 111,
 				"text" : "Number custom color",
@@ -55,26 +52,27 @@
 				"options" : 
 				[
 					{
-						"label" : "Space Mono",
-						"value" : "space-mono"
-					},
-					{
 						"label" : "Doto",
 						"value" : "doto"
+					},
+					{
+						"label" : "Space Mono",
+						"value" : "space-mono"
 					}
 				],
 				"order" : 105,
-				"text" : "Font preset",
+				"text" : "Font",
 				"type" : "combo",
 				"value" : "doto"
 			},
 			"griddiameterpct" : 
 			{
+				"condition" : "showdotgrid.value == true",
 				"index" : 8,
-				"max" : 150,
+				"max" : 200,
 				"min" : 20,
 				"order" : 108,
-				"text" : "Dot grid size %",
+				"text" : "Dot grid background size %",
 				"type" : "slider",
 				"value" : 150
 			},
@@ -101,7 +99,7 @@
 					}
 				],
 				"order" : 109,
-				"text" : "Number position preset",
+				"text" : "Number position",
 				"type" : "combo",
 				"value" : "left-center"
 			},
@@ -116,7 +114,7 @@
 			{
 				"index" : 7,
 				"order" : 107,
-				"text" : "Dot grid",
+				"text" : "Dot grid background",
 				"type" : "bool",
 				"value" : true
 			},
@@ -144,7 +142,7 @@
 				"order" : 102,
 				"text" : "Target date",
 				"type" : "textinput",
-				"value" : "2077-03-04 00:00:00"
+				"value" : "2077-01-01 00:00:00"
 			},
 			"thememode" : 
 			{
@@ -167,6 +165,7 @@
 			},
 			"tickanimation" : 
 			{
+				"condition" : "unitmode.value != 'milliseconds'",
 				"index" : 12,
 				"order" : 112,
 				"text" : "Number tick animation",
@@ -178,6 +177,10 @@
 				"index" : 4,
 				"options" : 
 				[
+					{
+						"label" : "Milliseconds",
+						"value" : "milliseconds"
+					},
 					{
 						"label" : "Seconds",
 						"value" : "seconds"
@@ -217,12 +220,10 @@
 	"preview" : "preview.gif",
 	"ratingsex" : "none",
 	"ratingviolence" : "none",
-	"snapshotformat" : 0,
-	"snapshotoverlay" : "",
 	"tags" : [ "Abstract" ],
 	"title" : "memento mori",
-	"type" : "web",
-	"version" : 1,
+	"type" : "Web",
+	"version" : 3,
 	"visibility" : "public",
 	"workshopid" : "3710327818",
 	"workshopurl" : "steam://url/CommunityFilePage/3710327818"

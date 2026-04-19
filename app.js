@@ -1,6 +1,11 @@
 (function () {
   const DEFAULT_TARGET = "2089-04-17 12:00:00";
+  const wallpaperSettings = {
+    fps: 0,
+  };
+
   const UNITS = {
+    milliseconds: { label: "MILLISECONDS", ms: 1 },
     seconds: { label: "SECONDS", ms: 1000 },
     minutes: { label: "MINUTES", ms: 1000 * 60 },
     hours: { label: "HOURS", ms: 1000 * 60 * 60 },
@@ -27,9 +32,12 @@
     sizeBias: 100,
     positionPreset: "left-center",
     error: null,
-    timerId: null,
     pendingTick: null,
   };
+
+  let lastFrame = performance.now() / 1000;
+  let fpsThreshold = 0;
+  let animationStarted = false;
 
   const root = document.getElementById("wallpaperRoot");
   const valueEl = document.getElementById("countdownValue");
@@ -127,8 +135,6 @@
     switch (state.colorPreset) {
       case "soft-gray":
         return "var(--text-secondary)";
-      case "accent-red":
-        return "var(--accent)";
       default:
         return "var(--text-display)";
     }
@@ -142,13 +148,17 @@
     return state.themeMode === "light" ? "#f5f5f5" : "#000000";
   }
 
+  function isTickAnimationEnabled() {
+    return state.tickAnimation && resolveUnitMode(state.unitMode) !== "milliseconds";
+  }
+
   function applyTheme() {
     const page = document.documentElement;
     root.dataset.position = resolvePositionPreset(state.positionPreset);
     root.dataset.theme = state.themeMode;
     root.dataset.font = state.fontPreset;
     root.classList.toggle("is-invalid", Boolean(state.error));
-    root.classList.toggle("no-tick-animation", !state.tickAnimation);
+    root.classList.toggle("no-tick-animation", !isTickAnimationEnabled());
     root.style.setProperty("--grid-opacity", state.showDotGrid ? "1" : "0");
     root.style.setProperty("--meta-opacity", state.showTarget ? "1" : "0");
     root.style.setProperty("--hero-color", getEffectiveColor());
@@ -215,33 +225,6 @@
     return Math.floor(remaining / unit.ms);
   }
 
-  function scheduleNextTick(now = new Date()) {
-    if (state.timerId) {
-      clearTimeout(state.timerId);
-      state.timerId = null;
-    }
-
-    const unit = UNITS[resolveUnitMode(state.unitMode)];
-    if (!unit) {
-      return;
-    }
-
-    const target = state.effectiveTarget;
-    if (!target) {
-      return;
-    }
-
-    const remaining = Math.max(0, target.getTime() - now.getTime());
-    if (remaining === 0) {
-      return;
-    }
-
-    const delay = remaining % unit.ms || unit.ms;
-    state.timerId = window.setTimeout(() => {
-      render();
-    }, Math.max(50, delay + 25));
-  }
-
   function fitNumber() {
     const computed = getComputedStyle(root);
     const safeX = Number.parseFloat(computed.getPropertyValue("--hero-safe-x")) || 64;
@@ -258,7 +241,7 @@
   }
 
   function pulseTick() {
-    if (!state.tickAnimation) {
+    if (!isTickAnimationEnabled()) {
       return;
     }
 
@@ -300,7 +283,6 @@
     updateTargetLine();
     fitNumber();
     updateGridMask();
-    scheduleNextTick(now);
 
     if (prevText !== formatted) {
       pulseTick();
@@ -370,8 +352,42 @@
     render();
   }
 
+  function applyGeneralProperties(properties) {
+    if (Object.prototype.hasOwnProperty.call(properties, "fps")) {
+      wallpaperSettings.fps = Number(properties.fps) || 0;
+    }
+  }
+
+  function run() {
+    window.requestAnimationFrame(run);
+
+    const now = performance.now() / 1000;
+    const dt = Math.min(now - lastFrame, 1);
+    lastFrame = now;
+
+    if (wallpaperSettings.fps > 0) {
+      fpsThreshold += dt;
+      if (fpsThreshold < 1 / wallpaperSettings.fps) {
+        return;
+      }
+      fpsThreshold -= 1 / wallpaperSettings.fps;
+    }
+
+    render();
+  }
+
+  function startAnimation() {
+    if (animationStarted) {
+      return;
+    }
+
+    animationStarted = true;
+    window.requestAnimationFrame(run);
+  }
+
   window.wallpaperPropertyListener = {
     applyUserProperties,
+    applyGeneralProperties,
   };
 
   window.addEventListener("resize", () => {
@@ -384,6 +400,7 @@
     state.lastValidTarget = parsedDefault;
     state.effectiveTarget = parsedDefault;
     render();
+    startAnimation();
   });
 
   if (document.readyState !== "loading") {
@@ -391,5 +408,6 @@
     state.lastValidTarget = parsedDefault;
     state.effectiveTarget = parsedDefault;
     render();
+    startAnimation();
   }
 })();

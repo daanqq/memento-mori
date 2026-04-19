@@ -8,7 +8,7 @@ The wallpaper shows the time remaining until a target date and keeps the layout 
 
 ## Features
 
-- Countdown modes: seconds, minutes, hours, days, weeks
+- Countdown modes: milliseconds, seconds, minutes, hours, days, weeks
 - Local font presets: `Doto` and `Space Mono`
 - Custom number color with preset override
 - Solid background color support
