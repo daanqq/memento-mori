@@ -1,0 +1,229 @@
+{
+	"contentrating" : "Everyone",
+	"description" : "A minimal countdown that shows the time remaining until a fixed date. Customize the unit, font, colors, theme, and dot-grid effect for a stark 'memento mori' display.",
+	"file" : "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"bgcustom" : 
+			{
+				"index" : 1,
+				"order" : 101,
+				"text" : "Use custom background",
+				"type" : "bool",
+				"value" : false
+			},
+			"colorpreset" : 
+			{
+				"index" : 10,
+				"options" : 
+				[
+					{
+						"label" : "Theme default",
+						"value" : "theme"
+					},
+					{
+						"label" : "Soft gray",
+						"value" : "soft-gray"
+					},
+					{
+						"label" : "Accent red",
+						"value" : "accent-red"
+					},
+					{
+						"label" : "Custom",
+						"value" : "custom"
+					}
+				],
+				"order" : 110,
+				"text" : "Number color",
+				"type" : "combo",
+				"value" : "theme"
+			},
+			"customcolor" : 
+			{
+				"index" : 11,
+				"order" : 111,
+				"text" : "Number custom color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"fontpreset" : 
+			{
+				"index" : 5,
+				"options" : 
+				[
+					{
+						"label" : "Space Mono",
+						"value" : "space-mono"
+					},
+					{
+						"label" : "Doto",
+						"value" : "doto"
+					}
+				],
+				"order" : 105,
+				"text" : "Font preset",
+				"type" : "combo",
+				"value" : "doto"
+			},
+			"griddiameterpct" : 
+			{
+				"index" : 8,
+				"max" : 150,
+				"min" : 20,
+				"order" : 108,
+				"text" : "Dot grid size %",
+				"type" : "slider",
+				"value" : 150
+			},
+			"positionpreset" : 
+			{
+				"index" : 9,
+				"options" : 
+				[
+					{
+						"label" : "Left center",
+						"value" : "left-center"
+					},
+					{
+						"label" : "Center",
+						"value" : "center"
+					},
+					{
+						"label" : "Lower left",
+						"value" : "lower-left"
+					},
+					{
+						"label" : "Lower center",
+						"value" : "lower-center"
+					}
+				],
+				"order" : 109,
+				"text" : "Number position preset",
+				"type" : "combo",
+				"value" : "left-center"
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "Background color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"showdotgrid" : 
+			{
+				"index" : 7,
+				"order" : 107,
+				"text" : "Dot grid",
+				"type" : "bool",
+				"value" : true
+			},
+			"showtarget" : 
+			{
+				"index" : 3,
+				"order" : 103,
+				"text" : "Show target date",
+				"type" : "bool",
+				"value" : true
+			},
+			"sizebias" : 
+			{
+				"index" : 6,
+				"max" : 120,
+				"min" : 80,
+				"order" : 106,
+				"text" : "Size %",
+				"type" : "slider",
+				"value" : 100
+			},
+			"targetdate" : 
+			{
+				"index" : 2,
+				"order" : 102,
+				"text" : "Target date",
+				"type" : "textinput",
+				"value" : "2077-03-04 00:00:00"
+			},
+			"thememode" : 
+			{
+				"index" : 0,
+				"options" : 
+				[
+					{
+						"label" : "Dark",
+						"value" : "dark"
+					},
+					{
+						"label" : "Light",
+						"value" : "light"
+					}
+				],
+				"order" : 100,
+				"text" : "Theme",
+				"type" : "combo",
+				"value" : "dark"
+			},
+			"tickanimation" : 
+			{
+				"index" : 12,
+				"order" : 112,
+				"text" : "Number tick animation",
+				"type" : "bool",
+				"value" : true
+			},
+			"unitmode" : 
+			{
+				"index" : 4,
+				"options" : 
+				[
+					{
+						"label" : "Seconds",
+						"value" : "seconds"
+					},
+					{
+						"label" : "Minutes",
+						"value" : "minutes"
+					},
+					{
+						"label" : "Hours",
+						"value" : "hours"
+					},
+					{
+						"label" : "Days",
+						"value" : "days"
+					},
+					{
+						"label" : "Weeks",
+						"value" : "weeks"
+					}
+				],
+				"order" : 104,
+				"text" : "Unit mode",
+				"type" : "combo",
+				"value" : "seconds"
+			},
+			"useseparators" : 
+			{
+				"index" : 13,
+				"order" : 113,
+				"text" : "Number space separators",
+				"type" : "bool",
+				"value" : true
+			}
+		}
+	},
+	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
+	"snapshotformat" : 0,
+	"snapshotoverlay" : "",
+	"tags" : [ "Abstract" ],
+	"title" : "memento mori",
+	"type" : "web",
+	"version" : 1,
+	"visibility" : "public",
+	"workshopid" : "3710327818",
+	"workshopurl" : "steam://url/CommunityFilePage/3710327818"
+}
