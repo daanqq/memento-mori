@@ -11,6 +11,7 @@
     hours: { label: "HOURS", ms: 1000 * 60 * 60 },
     days: { label: "DAYS", ms: 1000 * 60 * 60 * 24 },
     weeks: { label: "WEEKS", ms: 1000 * 60 * 60 * 24 * 7 },
+    months: { label: "MONTHS", ms: 1000 * 60 * 60 * 24 * 30 }
   };
 
   const state = {

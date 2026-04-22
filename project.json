@@ -200,6 +200,10 @@
 					{
 						"label" : "Weeks",
 						"value" : "weeks"
+					},
+					{
+						"label" : "Months",
+						"value" : "months"
 					}
 				],
 				"order" : 104,
